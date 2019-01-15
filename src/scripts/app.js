@@ -1,7 +1,11 @@
 const button = document.querySelector('button');
-const list = document.querySelector('ul');
+const div = document.querySelector('div');
 import{addElement, addition} from './factory.js';
+import '../styles/main.scss';
+import '../images/canyon.jpg';
+import '../images/colorado.jpg';
+import '../images/spring.jpg';
 
 button.addEventListener('click', ev => {
-  addElement(list, 'LI', 'A new task was added')
+  addElement(div, 'DIV', 'A new task was added')
 })

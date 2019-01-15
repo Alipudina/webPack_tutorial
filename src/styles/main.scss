@@ -1,0 +1,29 @@
+body {
+  background: cyan;
+  color: red;
+  text-align: center;
+
+  article, div {
+    margin: 2vw;
+  }
+
+  article {
+
+    button {
+      padding: .3vw;
+    }
+  }
+
+  img {
+    width: 50%;
+  }
+
+  .wrapper {
+    width: 30vw;
+    height: 30vw;
+    background-image: url(../images/canyon.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+  }
+}
