@@ -1,29 +1,36 @@
 body {
   background: cyan;
-  color: red;
   text-align: center;
 
-  article, div {
-    margin: 2vw;
+  .green {
+    color: green;
   }
 
-  article {
-
-    button {
-      padding: .3vw;
-    }
+  .big {
+    font-size: 2.5vw;
   }
 
-  img {
-    width: 50%;
+  .small {
+    font-size: 1.5vw;
   }
 
-  .wrapper {
-    width: 30vw;
-    height: 30vw;
-    background-image: url(../images/canyon.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin: 0 auto;
+  .verybig {
+    font-size: 3.5vw;
+    color: red;
   }
+
+  .fontFamily {
+    font-family: tahoma;
+    font-weight: 700;
+  }
+
+
+  // .wrapper {
+  //   width: 30vw;
+  //   height: 30vw;
+  //   background-image: url(../images/canyon.jpg);
+  //   background-repeat: no-repeat;
+  //   background-size: cover;
+  //   margin: 0 auto;
+  // }
 }

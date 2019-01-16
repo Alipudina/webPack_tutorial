@@ -1,18 +1,16 @@
 body {
   background: cyan;
-  color: red;
   text-align: center; }
-  body article, body div {
-    margin: 2vw; }
-  body article button {
-    padding: .3vw; }
-  body img {
-    width: 50%; }
-  body .wrapper {
-    width: 30vw;
-    height: 30vw;
-    background-image: url(../images/canyon.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin: 0 auto; }
+  body .green {
+    color: green; }
+  body .big {
+    font-size: 2.5vw; }
+  body .small {
+    font-size: 1.5vw; }
+  body .verybig {
+    font-size: 3.5vw;
+    color: red; }
+  body .fontFamily {
+    font-family: tahoma;
+    font-weight: 700; }
 
