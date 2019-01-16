@@ -1,9 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
-const ImageminJpegoptim = require('imagemin-jpegoptim');
-const copyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -33,18 +30,6 @@ module.exports = {
           'css-loader',
           'sass-loader'
         ]
-      },
-      {
-        test: /\.(png|jpe?g|gif|svg)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: '../images'
-            },
-          },
-        ],
       }
     ]
   },
@@ -55,15 +40,6 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: '../styles/main.css'
-    }),
-    new ImageminWebpackPlugin({
-      test: /\.(jpe?g|png|svg|gif)?/i,
-      plugins: [
-        ImageminJpegoptim({
-          size: "60%",
-          progressive: true
-        })
-      ]
     })
   ]
 }

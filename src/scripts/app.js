@@ -1,8 +1,5 @@
 
 import '../styles/main.scss';
-import '../images/canyon.jpg';
-import '../images/colorado.jpg';
-import '../images/spring.jpg';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
