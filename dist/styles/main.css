@@ -1,16 +1,1 @@
-body {
-  background: cyan;
-  text-align: center; }
-  body .green {
-    color: green; }
-  body .big {
-    font-size: 2.5vw; }
-  body .small {
-    font-size: 1.5vw; }
-  body .verybig {
-    font-size: 3.5vw;
-    color: red; }
-  body .fontFamily {
-    font-family: tahoma;
-    font-weight: 700; }
 

@@ -1,0 +1,22 @@
+
+nav#navbar {
+  border: 1px solid black;
+
+ul {
+  display: flex;
+  justify-content: space-around;
+  background: grey;
+  padding: 2vw 0;
+
+  li {
+    list-style-type: none;
+    margin: 0 1vw;
+    background: lime;
+    padding: .5vw .3vw;
+
+    a {
+      text-decoration: none;
+    }
+  }
+}
+}
