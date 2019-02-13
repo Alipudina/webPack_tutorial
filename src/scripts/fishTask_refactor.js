@@ -21,6 +21,7 @@ const populateMarket = numOfFishes => {
 populateMarket(100);
 
 const removeFish = (type, numOfRemovedFishes) => {
+  
   for (let i = 1; i <= numOfRemovedFishes; i++) {
     allMyFishes.splice(type, 1);
   }
