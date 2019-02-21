@@ -1,7 +1,7 @@
 import '../styles/main.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, NavLink, Route } from 'react-router-dom';
+import { BrowserRouter, NavLink, Route, Redirect, Switch } from 'react-router-dom';
 
 class NavList extends React.Component {
   render() {
@@ -20,7 +20,6 @@ class NavList extends React.Component {
     )
   }
 }
-// ##################################################################################
 
 class BlogForm extends React.Component {
   render() {
@@ -52,47 +51,60 @@ class BlogForm extends React.Component {
     )
   }
 }
-// ###############################################################################
 
 class Home extends React.Component {
   render() {
     return <h2 className="title">Welcome to our blog site</h2>;
   }
 }
-// ################################################################################
+
+class SinglePost extends React.Component {
+  render() {
+    let shownBlog;
+    let blogContent = this.props.postInfo.blogContent;
+
+    if (this.props.match.url === '/show') {
+      shownBlog = blogContent.length > 50 ? blogContent.substr(0, 50) + '...' : blogContent
+    }else {
+      shownBlog = blogContent;
+    }
+    return (
+      <div className="card my-2">
+        <div className="card-header">
+          <h3 className="title text-center">{this.props.postInfo.blogTitle}</h3>
+        </div>
+        <div className="card-body">
+          <p className="lead">{shownBlog} &nbsp;
+            {this.props.match.url === '/show' && <NavLink to={"/singlepost/" + this.props.position}>Read the full article</NavLink>}
+          </p>
+        </div>
+        <div className="card-footer">
+          <p className="lead"><strong>{this.props.postInfo.blogAuthor} </strong>
+           wrote at: {this.props.postInfo.blogDate.getDate()}/{this.props.postInfo.blogDate.getMonth() + 1}/
+           {this.props.postInfo.blogDate.getFullYear()} {this.props.postInfo.blogDate.getHours()}:
+           {this.props.postInfo.blogDate.getMinutes()}
+          </p>
+        </div>
+      </div>
+    )
+  }
+}
 
 class ShowAllPosts extends React.Component {
   render() {
     return (
       <>
-      {this.props.allPosts.map((post, index) => {
-        return (
-          <div className="card my-2" key={index}>
-            <div className="card-header">
-            <h3 className="title text-center">{post.blogTitle}</h3>
-            </div>
-            <div className="card-body">
-            <p className="lead">{post.blogContent}</p>
-            </div>
-            <div className="card-footer">
-            <p className="lead"><strong>{post.blogAuthor} </strong>
-         wrote at: {post.blogDate.getDate()}/{post.blogDate.getMonth() + 1}/{post.blogDate.getFullYear()}
-            </p>
-          </div>
-      </div>
-        )
-      })}
+      {this.props.allPosts.map((post, index) => <SinglePost postInfo={post} position={index} key={index} match={this.props.match}/>)}
       </>
     )
   }
 }
-// ##################################################################################
 
 export class Blogsite extends React.Component {
   constructor(props) {
     super(props);
     // initialize state
-    this.state = {authorValue: '', blogTitle: '', blogContent: '', allPosts: [], date: undefined};
+    this.state = {authorValue: '', blogTitle: '', blogContent: '', allPosts: [], date: undefined, formSubmitted: false};
     this.changeAuthor = this.changeAuthor.bind(this);
     this.changeTitle = this.changeTitle.bind(this);
     this.changeContent = this.changeContent.bind(this);
@@ -120,7 +132,8 @@ export class Blogsite extends React.Component {
                     blogContent: this.state.blogContent,
                     blogDate: currentDate
                   })
-    this.setState({allPosts: tempPosts, authorValue: '', blogTitle: '', blogContent: '', date: currentDate});
+    this.setState({allPosts: tempPosts, authorValue: '', blogTitle: '', blogContent: '', date: currentDate, formSubmitted: true});
+    setTimeout(() => this.setState({formSubmitted: false}), 0);
   }
 
   render() {
@@ -141,7 +154,14 @@ export class Blogsite extends React.Component {
                              createPost={this.createPost}
                     />
           } } />
-          <Route path="/show" render={ () => <ShowAllPosts allPosts={this.state.allPosts}/>} />
+          <Switch>
+            <Route path="/show" render={ ({match}) => <ShowAllPosts allPosts={this.state.allPosts} match={match}/>} />
+            <Route path="/singlepost/:postid" render={ ({match}) => {
+              const selectedPostData = this.state.allPosts[match.params.postid];
+              return <SinglePost postInfo={selectedPostData} match={match}/>
+            }} />
+            {this.state.formSubmitted && <Redirect to="/show" />}
+          </Switch>
           </div>
         </div>
         </>
